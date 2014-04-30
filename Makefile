@@ -14,13 +14,14 @@ endif
 syscalls.inc: $(syscalls).inc
 	ln -s $< $@
 
-%.elf.o: %.asm syscalls.inc
-	fasm $< $*.o
-	objconv -felf -ar:start:_start $*.o $@
-	rm -f $*.o
+%.o: %.asm syscalls.inc
+	fasm $< $@
 
-%.mach.o: %.elf.o
-	objconv -fmacho -nu $< $@
+%.elf.o: %.o
+	objconv -felf -ar:start:_start $< $@
+
+%.mach.o: %.o
+	objconv -fmacho -ar:start:_start -nu $< $@
 
 %.exe: %.o
 	ld $< -o $@
