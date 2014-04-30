@@ -15,16 +15,18 @@ syscalls.inc: $(syscalls).inc
 	ln -s $< $@
 
 %.elf.o: %.asm syscalls.inc
-	fasm $< $@
+	fasm $< $*.o
+	objconv -felf -ar:start:_start $*.o $@
+	rm -f $*.o
 
 %.mach.o: %.elf.o
-	objconv -fmacho -nu -ar:start:_start $< $@
+	objconv -fmacho -nu $< $@
 
 %.exe: %.o
 	ld $< -o $@
 
 %: %.$(format).exe
-	ln $< $@
+	ln -f $< $@
 
 .PHONY: clean
 clean:
