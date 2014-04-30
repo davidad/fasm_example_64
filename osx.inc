@@ -31,22 +31,22 @@ define O_DSYNC       0x400000
 
 ; mmap() and mprotect() flags
 ; http://www.opensource.apple.com/source/xnu/xnu-2050.18.24/bsd/sys/mman.h
-define MAP_SHARED    0b000000000001
-define MAP_PRIVATE   0b000000000010
-define MAP_FIXED     0b000000010000
-define MAP_RENAME    0b000000100000
-define MAP_NORESERVE 0b000001000000
-define MAP_INHERIT   0b000010000000
-define MAP_NOEXTEND  0b000100000000
-define MAP_SEMAPHORE 0b001000000000
-define MAP_NOCACHE   0b010000000000
-define MAP_JIT       0b100000000000
+define MAP_SHARED    000000000001b
+define MAP_PRIVATE   000000000010b
+define MAP_FIXED     000000010000b
+define MAP_RENAME    000000100000b
+define MAP_NORESERVE 000001000000b
+define MAP_INHERIT   000010000000b
+define MAP_NOEXTEND  000100000000b
+define MAP_SEMAPHORE 001000000000b
+define MAP_NOCACHE   010000000000b
+define MAP_JIT       100000000000b
 define MAP_FILE      0x0000
 define MAP_ANON      0x1000
-define PROT_NONE     0b000
-define PROT_READ     0b001
-define PROT_WRITE    0b010
-define PROT_EXEC     0b100
+define PROT_NONE     000b
+define PROT_READ     001b
+define PROT_WRITE    010b
+define PROT_EXEC     100b
 
 ; wait() flags (same as Linux)
 ; http://lxr.linux.no/linux+v3.13.5/include/uapi/linux/wait.h

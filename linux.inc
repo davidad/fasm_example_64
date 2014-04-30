@@ -33,15 +33,15 @@ define O_PATH        10000000o
 
 ; mmap() and mprotect() flags
 ; http://lxr.linux.no/linux+v3.13.5/include/uapi/asm-generic/mman-common.h
-define MAP_SHARED   0x01
-define MAP_PRIVATE  0x02
-define MAP_FIXED    0x10
-define MAP_ANON     0x20
-define PROT_NONE     0b0000
-define PROT_READ     0b0001
-define PROT_WRITE    0b0010
-define PROT_EXEC     0b0100
-define PROT_SEM      0b1000
+define MAP_SHARED     0x01
+define MAP_PRIVATE    0x02
+define MAP_FIXED      0x10
+define MAP_ANON       0x20
+define PROT_NONE      0000b
+define PROT_READ      0001b
+define PROT_WRITE     0010b
+define PROT_EXEC      0100b
+define PROT_SEM       1000b
 define PROT_GROWSDOWN 0x01000000
 define PROT_GROWSUP   0x02000000
 
