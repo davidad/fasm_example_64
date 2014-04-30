@@ -5,7 +5,7 @@ with `nasm`! (The key insights were found in [this forum thread](http://board.fl
 
 In order to use the Makefile here, you will need [`objconv`](http://www.agner.org/optimize/#objconv), and you will also
 need an already-working `fasm`. If you're on OSX, that might be quite difficult, so I'm including a working OSX
-`fasm` binary as a download in this repository.
+`fasm` binary as a [download](https://github.com/davidad/fasm_example_64/releases/download/v0.1/fasm) in this repository.
 
 Verify that you have these installed:
 
