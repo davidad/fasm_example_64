@@ -11,24 +11,31 @@ ifeq ($(uname),Linux)
 	syscalls := linux
 endif
 
-syscalls.inc: $(syscalls).inc
-	ln -s $< $@
+%.elf.o: %.asm
+	rm -f syscalls.inc
+	ln -s linux.inc syscalls.inc
+	fasm $< $*.o
+	objconv -felf -ar:start:_start $*.o $@
+	rm -f $*.o
+	rm -f syscalls.inc
 
-%.o: %.asm syscalls.inc
-	fasm $< $@
+%.mach.o: %.asm
+	rm -f syscalls.inc
+	ln -s osx.inc syscalls.inc
+	fasm $< $*.o
+	objconv -fmacho -ar:start:_start -nu $*.o $@
+	rm -f $*.o
+	rm -f syscalls.inc
 
-%.elf.o: %.o
-	objconv -felf -ar:start:_start $< $@
-
-%.mach.o: %.o
-	objconv -fmacho -ar:start:_start -nu $< $@
-
-%.exe: %.o
+%.$(format).exe: %.$(format).o
 	ld $< -o $@
+
+%.elf.exe: %.elf.o
+	/usr/local/gcc-4.8.1-for-linux64/bin/x86_64-pc-linux-ld $< -o $@
 
 %: %.$(format).exe
 	ln -f $< $@
 
 .PHONY: clean
 clean:
-	rm *.elf.o *.mach.o
+	rm -f *.elf.o *.mach.o syscalls.inc
