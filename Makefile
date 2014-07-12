@@ -28,7 +28,7 @@ endif
 	rm -f syscalls.inc
 
 %.$(format).exe: %.$(format).o
-	ld $< -o $@
+	ld `sdl2-config --libs` $< -o $@
 
 %.elf.exe: %.elf.o
 	/usr/local/gcc-4.8.1-for-linux64/bin/x86_64-pc-linux-ld $< -o $@
